@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: master-app
+  name: argocd-app
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -9,10 +9,7 @@ spec:
   source:
     repoURL: https://github.com/aliusmiles/k8s-argocd.git
     targetRevision: HEAD
-    path: master-app
-    helm:
-      valueFiles:
-        - values.yaml
+    path: argocd-bootstrap
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
