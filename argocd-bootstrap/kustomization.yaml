@@ -5,6 +5,6 @@ bases:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v1.6.1
 resources:
   - base/argocd-namespace.yaml
-  - base/argocd-app.yaml
+  - base/argocd-ingress.yaml
 patchesStrategicMerge:
   - overlays/argocd-cm.yaml
