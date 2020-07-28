@@ -1,6 +1,8 @@
-# Default values for cluster-charts.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-cluster: https://kubernetes.default.svc
-project: default
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    clusterName: master
+  source:
+    repoURL: https://github.com/aliusmiles/k8s-argocd.git
+    targetRevision: HEAD

@@ -1,7 +1,15 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cerebro
+
+
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: cerebro
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,13 +21,12 @@ spec:
     validate: true
 
   destination:
-    namespace: kube-system
+    namespace: cerebro
     server: {{ .Values.spec.destination.server }}
 
   project: default
-
   source:
-    path: applications/nginx-ingress
+    path: applications/cerebro
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:

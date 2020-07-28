@@ -1,0 +1,12 @@
+nginx-ingress:
+  controller:
+    replicaCount: 1
+    ingressClass: nginx-internal
+    publishService:
+      enabled: true
+    service:
+      enabled: true
+      type: LoadBalancer
+      enableHttp: false
+      targetPorts:
+        https: https

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: metrics-server
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -19,10 +19,7 @@ spec:
   project: default
 
   source:
-    path: applications/nginx-ingress
+    path: applications/metrics-server
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    helm:
-      valueFiles:
-        - values-{{ .Values.spec.destination.clusterName }}.yaml
 
