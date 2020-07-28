@@ -1,4 +1,4 @@
 dependencies:
 - name: nginx-ingress
   version: 1.41.1
-  repository: ttps://kubernetes-charts.storage.googleapis.com/
+  repository: https://kubernetes-charts.storage.googleapis.com/
