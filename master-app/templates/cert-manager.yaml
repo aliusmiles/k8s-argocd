@@ -7,7 +7,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-1"
 
 spec:
   syncPolicy:
@@ -32,12 +32,3 @@ spec:
         - /status
       kind: CustomResourceDefinition
 
----
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
-metadata:
-  name: selfsigning-issuer
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-spec:
-  selfSigned: {}
