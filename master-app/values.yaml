@@ -6,3 +6,4 @@ spec:
   source:
     repoURL: https://github.com/aliusmiles/k8s-argocd.git
     targetRevision: HEAD
+applications: []
