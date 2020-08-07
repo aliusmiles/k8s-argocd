@@ -11,7 +11,7 @@ spec:
     targetRevision: HEAD
     path: master-app
     helm:
-      values:
+      values: |
         applications:
           - cert-manager
   destination:
