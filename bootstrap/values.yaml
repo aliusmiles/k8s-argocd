@@ -1,7 +1,7 @@
 cluster: in-cluster
 
 certManager:
-  chartVersion: v0.6.7
+  chartVersion: v1.0.1
 
 ingressNginx:
   chartVersion: 2.15.0
