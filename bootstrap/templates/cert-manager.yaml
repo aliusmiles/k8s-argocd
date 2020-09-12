@@ -46,7 +46,7 @@ metadata:
   name: selfsigning-issuer
   annotations:
     # create issuer after cert-manager deployed
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   selfSigned: {}
 
