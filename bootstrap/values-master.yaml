@@ -1,0 +1,17 @@
+cluster: in-cluster
+
+# certManager:
+#   chartVersion: v1.0.1
+
+# ingressNginx:
+#   chartVersion: 2.15.0
+#   annotations:
+#     service.beta.kubernetes.io/aws-load-balancer-type: 'nlb'
+#     service.beta.kubernetes.io/aws-load-balancer-internal: 'true'
+
+metricsServer:
+  chartVersion: 2.11.2
+# kubePrometheusStack:
+#   chartVersion: 9.4.1
+#   grafanaHostname: localhost
+
