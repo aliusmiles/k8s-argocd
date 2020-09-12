@@ -23,7 +23,7 @@ kind: Application
 metadata:
   namespace: argocd
   # DIFF
-  name: bootstrap-master
+  name: bootstrap.master
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

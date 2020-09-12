@@ -4,7 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: cert-manager-{{ .Values.cluster }}
+  name: cert-manager.{{ .Values.cluster }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 

@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack-{{ .Values.cluster }}
+  name: kube-prometheus-stack.{{ .Values.cluster }}
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
