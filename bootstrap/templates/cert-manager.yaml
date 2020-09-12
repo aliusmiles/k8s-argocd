@@ -44,6 +44,8 @@ metadata:
   name: cert-issuer.{{ .Values.cluster }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 
 spec:
   syncPolicy:
