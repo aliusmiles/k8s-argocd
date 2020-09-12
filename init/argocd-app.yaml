@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: argocd
+spec:
+  destination:
+    namespace: argocd
+    name: in-cluster
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+  ### Config
+  project: default
+  source:
+    repoURL: https://github.com/aliusmiles/k8s-argocd.git
+    targetRevision: HEAD
+    path: argocd

@@ -1,9 +1,0 @@
-spec:
-  project: default
-  destination:
-    server: https://kubernetes.default.svc
-    clusterName: master
-  source:
-    repoURL: https://github.com/aliusmiles/k8s-argocd.git
-    targetRevision: HEAD
-applications: []

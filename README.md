@@ -1,3 +1,3 @@
 # k8s-argocd
 
-Bootstarp k8s cluster with ArgoCD
+Bootstarp k8s cluster with ArgoCD on Minikube

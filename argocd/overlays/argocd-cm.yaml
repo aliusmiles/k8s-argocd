@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  application.instanceLabelKey: argocd.argoproj.io/instance
   repositories: |
-    - url: https://github.com/helm/charts.git
     - url: https://github.com/aliusmiles/k8s-argocd.git
