@@ -28,6 +28,7 @@ spec:
     helm:
       releaseName: metrics-server
       values: |
-        - --kubelet-insecure-tls=true
-        - --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
+        args:
+          - --kubelet-insecure-tls=true
+          - --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
 {{- end -}}
