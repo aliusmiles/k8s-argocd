@@ -44,7 +44,7 @@ metadata:
   namespace: cert-manager
   annotations:
     # create issuer after cert-manager deployed
-    argocd.argoproj.io/hook: "post-sync"
+    argocd.argoproj.io/hook: PostSync
 spec:
   selfSigned: {}
 {{- end -}}
