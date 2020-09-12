@@ -37,14 +37,30 @@ spec:
         - /status
       kind: CustomResourceDefinition
 ---
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: selfsigning-issuer
-  namespace: cert-manager
-  annotations:
-    # create issuer after cert-manager deployed
-    argocd.argoproj.io/hook: PostSync
+  namespace: argocd
+  name: cert-issuer.{{ .Values.cluster }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+
 spec:
-  selfSigned: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  destination:
+    namespace: cert-manager
+    name: {{ .Values.cluster }}
+
+  project: {{ .Values.cluster }}
+
+  source:
+    repoURL: https://github.com/aliusmiles/k8s-argocd.git
+    path: cert-issuer
+    targetRevision: HEAD
 {{- end -}}
