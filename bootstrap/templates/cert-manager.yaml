@@ -39,15 +39,5 @@ spec:
       jsonPointers:
         - /status
       kind: CustomResourceDefinition
----
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
-metadata:
-  name: selfsigning-issuer
-  annotations:
-    # create issuer after cert-manager deployed
-    argocd.argoproj.io/sync-wave: "1"
-spec:
-  selfSigned: {}
 
 {{- end -}}
