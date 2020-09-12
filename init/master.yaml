@@ -43,3 +43,7 @@ spec:
     repoURL: https://github.com/aliusmiles/k8s-argocd.git
     targetRevision: HEAD
     path: bootstrap
+    helm:
+      values: |
+        metricsServer:
+          chartVersion: 2.11.1

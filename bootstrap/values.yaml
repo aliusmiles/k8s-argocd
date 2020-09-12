@@ -12,7 +12,7 @@ ingressNginx:
 metricsServer:
   chartVersion: 2.11.2
 
-kubePrometheusStack:
-  chartVersion: 9.4.1
-  grafanaHostname: localhost
+# kubePrometheusStack:
+#   chartVersion: 9.4.1
+#   grafanaHostname: localhost
 
