@@ -7,9 +7,6 @@ metadata:
   name: cert-manager-{{ .Values.cluster }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    # create before others to allow CRD usage
-    argocd.argoproj.io/sync-wave: "-2"
 
 spec:
   syncPolicy:
