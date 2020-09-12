@@ -1,0 +1,33 @@
+{{- if .Values.metricsServer -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics-server-{{ .Values.cluster }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  destination:
+    namespace: metrics-server
+    name: {{ .Values.cluster }}
+
+  project: {{ .Values.cluster }}
+
+  source:
+    chart: metrics-server
+    repoURL: https://kubernetes-charts.storage.googleapis.com
+    targetRevision: {{ .Values.metricsServer.chartVersion }}
+    helm:
+      releaseName: metrics-server
+      values: |
+        - --kubelet-insecure-tls=true
+        - --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
+{{- end -}}

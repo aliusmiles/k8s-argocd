@@ -1,4 +1,0 @@
-dependencies:
-- name: cerebro
-  version: 1.9.2
-  repository: https://kubernetes-charts.storage.googleapis.com/

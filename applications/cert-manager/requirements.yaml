@@ -1,5 +1,0 @@
-dependencies:
-- name: cert-manager
-  # Do NOT update to v0.16.0 until kubectl 1.19 is out!!
-  version: v0.15.0
-  repository: https://charts.jetstack.io

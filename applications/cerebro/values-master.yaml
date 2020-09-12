@@ -1,8 +1,0 @@
-cerebro:
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: nginx-internal
-    hosts:
-      - cerebro.local
-    path: /

@@ -1,0 +1,53 @@
+{{- if .Values.certManager -}}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: cert-manager-{{ .Values.cluster }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    # create before others to allow CRD usage
+    argocd.argoproj.io/sync-wave: "-2"
+
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  destination:
+    namespace: cert-manager
+    name: {{ .Values.cluster }}
+
+  project: {{ .Values.cluster }}
+
+  source:
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: {{ .Values.certManager.chartVersion }}
+    helm:
+      releaseName: cert-manager
+      values: |
+        installCRDs: true
+
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      jsonPointers:
+        - /status
+      kind: CustomResourceDefinition
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: selfsigning-issuer
+  annotations:
+    # create issuer after cert-manager deployed
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  selfSigned: {}
+
+{{- end -}}

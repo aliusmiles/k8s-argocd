@@ -1,0 +1,48 @@
+{{- if .Values.kubePrometheusStack -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx-{{ .Values.cluster }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    # create before others to allow CRD usage
+    argocd.argoproj.io/sync-wave: "-1"
+
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  destination:
+    namespace: prometheus
+    name: {{ .Values.cluster }}
+
+  project: {{ .Values.cluster }}
+
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: {{ .Values.kubePrometheusStack.chartVersion }}
+    helm:
+      releaseName: kube-prometheus-stack
+      values: |
+        grafana:
+          enabled: true
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: nginx-internal
+              cert-manager.io/cluster-issuer: selfsigning-issuer
+            hosts:
+              - {{ .Values.kubePrometheusStack.grafanaHostname }}
+            path: /
+            tls:
+              - secretName: grafana-ingress-cert
+                hosts:
+                  - {{ .Values.kubePrometheusStack.grafanaHostname }}
+{{- end -}}
