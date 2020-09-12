@@ -46,4 +46,4 @@ spec:
     helm:
       values: |
         metricsServer:
-          chartVersion: 2.11.1
+          chartVersion: 2.11.2
